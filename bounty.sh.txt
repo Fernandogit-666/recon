@@ -1,0 +1,15 @@
+#!/usr/bin/env bash 
+
+read -p "Digite o dominio: " dominio;
+
+assetfinder -subs-only  $dominio;
+
+cat $dominio".txt" | httprobe > resolvido.txt;
+
+cat resulvido.txt | gauplus | grep "=" | send 's/=.*/=/' | sort -u > param.txt
+
+cat param.txt | httpx -mc 200 -o paratest200.txt;
+
+rm param.txt
+
+cat paratest.txt | dalfox pipe
